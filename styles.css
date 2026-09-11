@@ -148,14 +148,17 @@ main,
 }
 
 .logo-img {
-  width: 2.75rem;
-  height: 2.75rem;
-  object-fit: cover;
-  object-position: top center; /* 상단 원형 엠블럼에 포커스 */
-  border-radius: 50%;
-  background: var(--surface-strong);
-  border: 1px solid var(--border);
-  box-shadow: var(--shadow);
+  height: clamp(64px, 10vw, 96px);
+  width: auto;
+  object-fit: contain;
+  object-position: center;
+  /* Show full wide logo; avoid circular crop and black box */
+  border-radius: 0;
+  border: 0;
+  box-shadow: none;
+  /* Blend black background away on pastel header */
+  mix-blend-mode: lighten;
+  isolation: isolate;
 }
 
 .logo-mark {
