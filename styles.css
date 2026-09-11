@@ -43,11 +43,23 @@ body {
   color: var(--ink);
   background:
     linear-gradient(165deg, var(--bg-top) 0%, var(--bg-mid) 48%, var(--bg-bottom) 100%);
-  background-attachment: fixed;
   overflow-x: hidden;
   position: relative;
 }
 
+/* Single, shared battle backdrop (fixed layer for reliable iOS behavior) */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background-image: url("assets/hero-battle.webp");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  pointer-events: none;
+  transform: translateZ(0);
+}
 img {
   max-width: 100%;
   display: block;
@@ -210,10 +222,6 @@ main,
   place-items: center;
   text-align: center;
   color: #fff;
-  background-image: url("assets/hero-battle.webp");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
   overflow: hidden;
 }
 
@@ -675,3 +683,7 @@ main,
     transform: none;
   }
 }
+
+/* Unify background — ensure no section sets its own background image */
+.hero { background: none !important; }
+.games { background: none !important; }
