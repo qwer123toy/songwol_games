@@ -147,6 +147,17 @@ main,
   gap: 0.75rem;
 }
 
+.logo-img {
+  width: 2.75rem;
+  height: 2.75rem;
+  object-fit: cover;
+  object-position: top center; /* 상단 원형 엠블럼에 포커스 */
+  border-radius: 50%;
+  background: var(--surface-strong);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+
 .logo-mark {
   display: grid;
   place-items: center;
