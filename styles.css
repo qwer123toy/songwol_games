@@ -343,6 +343,9 @@ main,
   object-fit: cover;
   display: block;
 }
+.card-art--defence .card-image {
+  object-position: 50% 40%;
+}
 
 .card-art--defence {
   background:
