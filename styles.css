@@ -323,6 +323,13 @@ main,
   overflow: hidden;
 }
 
+.card-art .card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
 .card-art--defence {
   background:
     radial-gradient(circle at 30% 40%, rgba(255, 255, 255, 0.5), transparent 50%),
