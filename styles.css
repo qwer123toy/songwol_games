@@ -1,1 +1,178 @@
-*{box-sizing:border-box}body{margin:0;min-height:100vh;font-family:system-ui,sans-serif;color:#233047;background:#18283f;overflow-x:hidden}body::before{content:"";position:fixed;inset:0;z-index:0;background:url("assets/hero-battle.webp") center/cover no-repeat;pointer-events:none}img{max-width:100%;display:block}.bg-blobs{display:none!important}.site-header,main,.site-footer{position:relative;z-index:1}.site-header{position:fixed;top:0;left:0;right:0;z-index:10;padding:12px 20px;background:rgba(12,27,49,.2)}.logo-img{height:96px;width:auto;object-fit:contain;mix-blend-mode:lighten}.hero{min-height:700px;padding:120px 24px 0;display:grid;place-items:center;text-align:center;color:#fff;background:transparent!important}.hero-title-img{width:100%;max-width:920px;height:auto;margin:auto}.hero-accents,.accent-chip{display:none!important}.games{padding:64px max(24px,calc((100% - 1100px)/2)) 80px;background:transparent!important;background-image:none!important}.games-lineup-heading{margin:0 0 32px;text-align:center}.games-lineup-title-img{width:100%;max-width:720px;height:auto;margin:auto}.game-grid{display:grid;grid-template-columns:1fr;gap:24px}.game-card{display:flex;flex-direction:column;background:rgba(255,250,242,.92);border:1px solid rgba(255,255,255,.58);border-radius:24px;overflow:hidden}.card-image{width:100%;height:240px;object-fit:cover}.card-body{padding:12px 24px 24px;display:flex;flex-direction:column;flex:1}.card-pitch{flex:1}.btn{display:inline-flex;justify-content:center;gap:6px;padding:11px 20px;font-weight:600;text-decoration:none;border-radius:999px}.btn-primary{color:#fff;background:#3d7fb0}.site-footer{padding:32px 24px;text-align:center;color:#fff}@media(min-width:780px){.game-grid{grid-template-columns:1fr 1fr;gap:28px}}
+*{box-sizing:border-box}
+/* Base */
+body{
+  margin:0;
+  min-height:100vh;
+  font-family:system-ui, -apple-system, "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  color:#233047;
+  background:#18283f;
+  overflow-x:hidden
+}
+body::before{
+  content:"";
+  position:fixed;inset:0;z-index:0;
+  background:url("assets/hero-battle.webp") center/cover no-repeat;
+  pointer-events:none
+}
+img{max-width:100%;display:block}
+
+.site-header,main,.site-footer{position:relative;z-index:1}
+.site-header{
+  position:fixed;top:0;left:0;right:0;z-index:10;
+  padding:12px 20px;
+  background:rgba(12,27,49,.2)
+}
+.logo-img{height:96px;width:auto;object-fit:contain;mix-blend-mode:lighten}
+
+/* Hero */
+.hero{
+  min-height:700px;padding:120px 24px 0;
+  display:grid;place-items:center;text-align:center;color:#fff;
+  background:transparent!important
+}
+.hero-title-img{width:100%;max-width:920px;height:auto;margin:auto}
+.hero-accents,.accent-chip{display:none!important}
+
+/* Games section */
+.games{
+  padding:64px max(24px,calc((100% - 1100px)/2)) 80px;
+  background:transparent!important;background-image:none!important
+}
+.games-lineup-heading{margin:0 0 32px;text-align:center}
+.games-lineup-title-img{width:100%;max-width:720px;height:auto;margin:auto}
+.game-grid{display:grid;grid-template-columns:1fr;gap:24px}
+
+/* Fancy card shell */
+.game-card{
+  --accent:#2585C4;           /* default royal blue */
+  --accent-2:#3ea1e0;
+  --violet:#5b5fcf;
+  position:relative;
+  display:flex;flex-direction:column;
+  background:rgba(255,250,242,.86);            /* warm ivory */
+  border:1px solid rgba(255,255,255,.65);
+  border-radius:24px;
+  overflow:hidden;
+  box-shadow:0 6px 20px rgba(12,19,35,.28);
+  backdrop-filter:saturate(120%) blur(6px);
+  transform:translateY(0);
+  transition:transform .28s ease, box-shadow .28s ease, border-color .28s ease, filter .28s ease
+}
+.game-card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 14px 36px rgba(10,17,33,.45), 0 0 0 1px rgba(255,255,255,.45) inset, 0 0 22px var(--accent, #2585C4);
+  border-color:rgba(255,255,255,.8)
+}
+.game-card.is-visible{filter:brightness(1)}
+
+/* Accent per game */
+.game-card--survivor{ --accent:#5367C8; --accent-2:#745BC7 }
+.game-card--defence{ --accent:#2585C4; --accent-2:#3aa0e5 }
+
+/* Art area */
+.card-art{
+  position:relative;overflow:hidden
+}
+.card-image{
+  width:100%;height:240px;object-fit:cover;
+  transform:scale(1);transition:transform .32s ease
+}
+.game-card:hover .card-image{ transform:scale(1.03) }
+.card-art::after{
+  /* soft white to transparent gradient at bottom of art */
+  content:"";position:absolute;left:0;right:0;bottom:0;height:38%;
+  background:linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(250,246,236,.65) 45%, rgba(250,246,236,.92) 100%);
+  pointer-events:none
+}
+.genre-badge{
+  position:absolute;left:14px;top:14px;z-index:2;
+  padding:7px 12px 8px;
+  font-size:12px;font-weight:800;letter-spacing:.12em;
+  color:#eaf3ff;text-shadow:0 1px 1px rgba(6,12,26,.5);
+  border-radius:999px;
+  background:linear-gradient(180deg, rgba(12,26,58,.78), rgba(12,26,58,.62));
+  border:1px solid rgba(255,255,255,.4);
+  box-shadow:0 2px 8px rgba(0,0,0,.35), 0 0 0 1px rgba(8,25,55,.3) inset
+}
+.game-card--defence .genre-badge{ background:linear-gradient(180deg, rgba(20,50,96,.78), rgba(20,50,96,.6)) }
+.game-card--survivor .genre-badge{ background:linear-gradient(180deg, rgba(42,38,96,.78), rgba(42,38,96,.6)) }
+
+/* Body */
+.card-body{
+  padding:14px 20px 22px;
+  display:flex;flex-direction:column;gap:6px;flex:1
+}
+.card-title{
+  margin:6px 2px 0;
+  font-size:22px;line-height:1.25;font-weight:800;
+  color:#0e2747
+}
+.card-en{
+  margin:2px 2px 6px;
+  font-size:12px;letter-spacing:.12em;text-transform:uppercase;
+  color:#49648d
+}
+.game-card--defence .card-en{ color:#2b5f9a }
+.game-card--survivor .card-en{ color:#8b86e5 }
+.card-pitch{
+  margin:2px 2px 8px;color:#2a3b57;line-height:1.5;flex:0
+}
+
+/* Feature chips */
+.feature-chips{
+  --chip-bg:rgba(208, 228, 255, .58);
+  padding:0;margin:0 0 10px;list-style:none;display:flex;flex-wrap:wrap;gap:8px
+}
+.chip{
+  padding:6px 10px;border-radius:999px;
+  background:var(--chip-bg);
+  color:#112c50;font-weight:700;font-size:12px;
+  border:1px solid rgba(255,255,255,.65);
+  box-shadow:0 1px 0 rgba(12,19,35,.22)
+}
+.game-card--survivor .feature-chips{ --chip-bg:rgba(201, 206, 255, .56) }
+
+/* CTA */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:13px 18px;font-weight:800;text-decoration:none;border-radius:16px;
+  transition:transform .2s ease, filter .2s ease, box-shadow .2s ease
+}
+.btn-primary.cta{
+  width:100%;
+  color:#f7fbff;
+  background:
+    linear-gradient(180deg, rgba(255,231,158,.8), rgba(255,231,158,.05)) padding-box,
+    linear-gradient(180deg, var(--accent-2), var(--accent)) border-box;
+  border:1px solid transparent;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.75),
+    0 6px 14px rgba(19, 36, 74, .35),
+    0 0 0 1px rgba(255,255,255,.3);
+}
+.btn-primary.cta .btn-icon{display:inline-block;transition:transform .2s ease}
+.btn-primary.cta:hover{
+  filter:brightness(1.08);
+  transform:translateY(-2px);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.85),
+    0 10px 20px rgba(16, 32, 66, .5),
+    0 0 16px var(--accent);
+}
+.btn-primary.cta:hover .btn-icon{ transform:translateX(4px) }
+
+/* Footer */
+.site-footer{
+  padding:32px 24px 44px;
+  text-align:center;
+  background:transparent;color:#fff
+}
+.footer-brand-img{
+  width:min(640px, 90vw);
+  height:auto;margin:0 auto;display:block
+}
+
+/* Responsive */
+@media(min-width:780px){
+  .game-grid{grid-template-columns:1fr 1fr;gap:28px}
+}
