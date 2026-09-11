@@ -141,29 +141,20 @@ img{max-width:100%;display:block}
 .btn-primary.cta{
   width:100%;
   color:#f7fbff;
-  background:
-    /* soften warm top highlight and mute border gradient */
-    linear-gradient(180deg, rgba(255,231,158,.22), rgba(255,231,158,0)) padding-box,
-    linear-gradient(
-      180deg,
-      color-mix(in srgb, var(--accent-2) 80%, white 20%),
-      color-mix(in srgb, var(--accent) 80%, white 20%)
-    ) border-box;
-  border:1px solid transparent;
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.7),
-    0 4px 10px rgba(19, 36, 74, .28),
-    0 0 0 1px rgba(255,255,255,.22);
+  /* Solid single-color fill using per-card accent */
+  background: var(--accent);
+  /* Subtle solid border to keep shape without gradients */
+  border:1px solid color-mix(in srgb, var(--accent) 85%, black 15%);
+  /* Remove fancy multi-layer glows/shadows */
+  box-shadow:none;
 }
 .btn-primary.cta .btn-icon{display:inline-block;transition:transform .2s ease}
 .btn-primary.cta:hover{
-  /* keep subtle lift, reduce glow intensity */
-  filter:brightness(1.04);
-  transform:translateY(-2px);
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.75),
-    0 8px 16px rgba(16, 32, 66, .4),
-    0 0 10px color-mix(in srgb, var(--accent) 35%, transparent);
+  /* Slightly darker solid on hover, minimal lift */
+  background: color-mix(in srgb, var(--accent) 88%, black 12%);
+  transform:translateY(-1px);
+  filter:none;
+  box-shadow:none;
 }
 .btn-primary.cta:hover .btn-icon{ transform:translateX(4px) }
 
