@@ -619,6 +619,48 @@ main,
   }
 }
 
+/* Image-based hero title and battle-art games backdrop */
+.hero-title-img {
+    display: block;
+    width: 100%;
+    max-width: min(920px, 92vw);
+    height: auto;
+    margin: 0 auto;
+    filter: drop-shadow(0 18px 28px rgba(10, 25, 55, 0.38));
+}
+
+.hero h1 {
+    margin: 0;
+}
+
+.games {
+    max-width: none;
+    margin: 0;
+    padding: clamp(3rem, 7vw, 6rem) max(1.5rem, calc((100% - 1100px) / 2)) 5rem;
+    background-image:
+          linear-gradient(rgba(30, 48, 78, 0.28), rgba(255, 248, 238, 0.58)),
+          url("assets/hero-battle.webp");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#games .section-title {
+    color: #fff;
+    text-shadow: 0 3px 16px rgba(10, 25, 55, 0.65);
+}
+
+#games .section-sub {
+    color: rgba(255, 255, 255, 0.92);
+    text-shadow: 0 2px 10px rgba(10, 25, 55, 0.7);
+}
+
+#games .game-card {
+    background: rgba(255, 250, 242, 0.92);
+    border-color: rgba(255, 255, 255, 0.58);
+}
+
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
